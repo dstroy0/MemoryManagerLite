@@ -1,7 +1,9 @@
 #ifndef MEMORY_MANAGER_LITE_H
 #define MEMORY_MANAGER_LITE_H
+
 #include <Arduino.h> // For memcpy
 /// @brief Class for managing memory allocation and deallocation
+
 class MemoryManager
 {
 public:
