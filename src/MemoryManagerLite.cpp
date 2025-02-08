@@ -25,7 +25,7 @@ void *MemoryManager::allocate(size_t size)
 {
     // Ensure size is aligned to 4 bytes
     size = (size + 3) & ~3;
-    
+
     Block *current = head;
     do
     {
@@ -60,6 +60,9 @@ void MemoryManager::deallocate(void *ptr)
 /// @return Pointer to the reallocated memory
 void *MemoryManager::reallocate(void *ptr, size_t newSize)
 {
+    // Ensure size is aligned to 4 bytes
+    newSize = (newSize + 3) & ~3;
+    
     if (!ptr)
         return allocate(newSize);
     Block *block = reinterpret_cast<Block *>(reinterpret_cast<char *>(ptr) - sizeof(Block));
