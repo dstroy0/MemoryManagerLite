@@ -23,6 +23,9 @@ MemoryManager::~MemoryManager()
 /// @return Pointer to the allocated memory
 void *MemoryManager::allocate(size_t size)
 {
+    // Ensure size is aligned to 4 bytes
+    size = (size + 3) & ~3;
+    
     Block *current = head;
     do
     {
@@ -37,7 +40,7 @@ void *MemoryManager::allocate(size_t size)
         }
         current = current->next;
     } while (current != head);
-    return nullptr; // memory pool exhausted
+    return nullptr; // No suitable block found
 }
 
 /// @brief Deallocate memory
